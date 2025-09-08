@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="158" id="KGk-i7-Jjw" customClass="WeatherDetailTableViewCell" customModule="ToDoApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="531" height="158"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="531" height="158"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tr7-Ze-5L7">
+                        <rect key="frame" x="10" y="5" width="511" height="153"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZO-Sn-cSA">
+                                <rect key="frame" x="0.0" y="0.0" width="124.66666666666667" height="153"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erz-ma-dzy">
+                                <rect key="frame" x="128.66666666666666" y="0.0" width="125" height="153"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmw-rU-5xK">
+                                <rect key="frame" x="257.66666666666669" y="0.0" width="124.66666666666669" height="153"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-jd-Lhr">
+                                <rect key="frame" x="386.33333333333331" y="0.0" width="124.66666666666669" height="153"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="tr7-Ze-5L7" secondAttribute="bottom" id="EQf-I0-cX8"/>
+                    <constraint firstAttribute="trailing" secondItem="tr7-Ze-5L7" secondAttribute="trailing" constant="10" id="SM7-KF-xES"/>
+                    <constraint firstItem="tr7-Ze-5L7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="vKV-T5-12s"/>
+                    <constraint firstItem="tr7-Ze-5L7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yZ4-Nk-rSZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="humidLabel" destination="Dmw-rU-5xK" id="aPK-NA-Fz9"/>
+                <outlet property="tempLabel" destination="erz-ma-dzy" id="uAQ-ZK-MIV"/>
+                <outlet property="timeLabel" destination="bZO-Sn-cSA" id="R2K-gK-WbP"/>
+                <outlet property="windSpeedLabel" destination="4wV-jd-Lhr" id="3Yq-v5-vRr"/>
+            </connections>
+            <point key="canvasLocation" x="290.83969465648852" y="28.87323943661972"/>
+        </tableViewCell>
+    </objects>
+</document>

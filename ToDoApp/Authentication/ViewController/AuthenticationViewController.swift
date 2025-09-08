@@ -105,7 +105,7 @@ extension AuthenticationViewController: UITableViewDelegate, UITableViewDataSour
         let loginRegisterVC = authSB.instantiateViewController(withIdentifier: "LoginRegisterViewController") as! LoginRegisterViewController
         loginRegisterVC.modalPresentationStyle = .formSheet
         loginRegisterVC.loginRegiseterType = .login
-        loginRegisterVC.name =  userLists[indexPath.row].name
+        loginRegisterVC.user =  userLists[indexPath.row]
         self.present(loginRegisterVC, animated: true)
     }
 }
