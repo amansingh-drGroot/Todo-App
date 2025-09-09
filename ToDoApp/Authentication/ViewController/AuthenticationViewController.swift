@@ -35,6 +35,8 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func configTheme() {
+        var a = [0]
+        print(a[6])
         self.toDoLabel.customLabel(
             text: "To Do App",
             textColor: .black,

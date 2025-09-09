@@ -9,7 +9,9 @@ target 'ToDoApp' do
     pod 'Moya/RxSwift'
     pod 'RxSwift'
     pod 'RxCocoa'
-
+    pod 'FirebaseAnalytics'
+    pod 'FirebaseCrashlytics'
+    
   target 'ToDoAppTests' do
     inherit! :search_paths
     # Pods for testing
