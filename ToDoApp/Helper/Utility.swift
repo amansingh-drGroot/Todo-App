@@ -12,6 +12,9 @@ enum AlertButtonType: String {
     case okay = "Okay"
     case cancel = "Cancel"
     case retry = "Retry"
+    case markAsCompleted = "Mark as Completed"
+    case uncompleteTask = "Uncomplete Task"
+    case editTodo = "Edit Todo"
     case none
 }
 

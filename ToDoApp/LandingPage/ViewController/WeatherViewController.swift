@@ -17,6 +17,9 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var latLongLabel: UILabel!
     @IBOutlet weak var windHumidLabel: UILabel!
     @IBOutlet weak var weatherTableView: UITableView!
+    @IBOutlet weak var todoNavigationButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     
     var selectedUser: User?
     private let locationManager = CLLocationManager()
@@ -35,6 +38,18 @@ class WeatherViewController: UIViewController {
     }
     
     private func configTheme() {
+        
+        self.nameLabel.customLabel(
+            text: "Hello!, \(self.selectedUser?.name ?? "")",
+            textColor: .black,
+            font: UIFont.systemFont(ofSize: 15, weight: .semibold)
+        )
+        
+        self.idLabel.customLabel(
+            text: "User Id: \(self.selectedUser?.id ?? 0)",
+            textColor: .black,
+            font: UIFont.systemFont(ofSize: 13, weight: .semibold)
+        )
         
         self.locationLabel.customLabel(
             text: "Lucknow",
@@ -71,6 +86,8 @@ class WeatherViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        self.todoNavigationButton.customButton(title: "Let's Check ToDo", titleFont: UIFont.systemFont(ofSize: 20, weight: .medium), textColor: .black, cornerRadius: 12, backgroundColor: .lightGray)
     }
     
     private func configDependency() {
@@ -148,6 +165,15 @@ class WeatherViewController: UIViewController {
             self.weatherTableView.reloadData()
         }
     }
+    
+    @IBAction func didTapToDoNavigationButton(_ sender: UIButton) {
+        let landingSB = UIStoryboard(name: "LandingPage", bundle: nil)
+        let todoVC = landingSB.instantiateViewController(withIdentifier: "ToDoViewController") as! ToDoViewController
+        todoVC.modalPresentationStyle = .formSheet
+        todoVC.selectedUser = self.selectedUser
+        self.present(todoVC, animated: true)
+    }
+    
 }
 
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
@@ -159,9 +185,9 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let weatherDetailCell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailTableViewCell") as! WeatherDetailTableViewCell
         if indexPath.row == 0 {
-            weatherDetailCell.setDetailCell(time: "Time (HH:MM)", temp: "Temperature (\(self.forecastData?.hourlyUnits?.temperature2M ?? ""))", humid: "Humid (\(self.forecastData?.hourlyUnits?.relativeHumidity2M ?? ""))", windSpeed: "Wind Speed (\(self.forecastData?.hourlyUnits?.windSpeed10M ?? ""))")
+            weatherDetailCell.setDetailCell(time: "Time (HH:MM)", temp: "Temperature (\(self.forecastData?.hourlyUnits?.temperature2M ?? ""))", humid: "Humid (\(self.forecastData?.hourlyUnits?.relativeHumidity2M ?? ""))", windSpeed: "Wind Speed (\(self.forecastData?.hourlyUnits?.windSpeed10M ?? ""))", weight: .semibold)
         } else {
-            weatherDetailCell.setDetailCell(time: Date.time(from: self.forecastData?.hourly?.time?[indexPath.row - 1] ?? "") ?? "", temp: "\(self.forecastData?.hourly?.temperature2M?[indexPath.row - 1] ?? 0)", humid: "\(self.forecastData?.hourly?.relativeHumidity2M?[indexPath.row - 1] ?? 0)", windSpeed: "\(self.forecastData?.hourly?.relativeHumidity2M?[indexPath.row - 1] ?? 0)")
+            weatherDetailCell.setDetailCell(time: Date.time(from: self.forecastData?.hourly?.time?[indexPath.row - 1] ?? "") ?? "", temp: "\(self.forecastData?.hourly?.temperature2M?[indexPath.row - 1] ?? 0)", humid: "\(self.forecastData?.hourly?.relativeHumidity2M?[indexPath.row - 1] ?? 0)", windSpeed: "\(self.forecastData?.hourly?.relativeHumidity2M?[indexPath.row - 1] ?? 0)", weight: .regular)
         }
         weatherDetailCell.selectionStyle = .none
         return weatherDetailCell

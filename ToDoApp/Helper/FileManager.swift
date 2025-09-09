@@ -74,3 +74,91 @@ class UserStorage {
         }
     }
 }
+
+
+class TodoManager {
+    
+    static let shared = TodoManager()
+    
+    private init() {}
+    
+    private let fileName = "todos.json"
+    
+    private var fileURL: URL? {
+        do {
+            let documentDir = try FileManager.default.url(for: .documentDirectory,
+                                                          in: .userDomainMask,
+                                                          appropriateFor: nil,
+                                                          create: true)
+            return documentDir.appendingPathComponent(fileName)
+        } catch {
+            print("Error getting file path: \(error)")
+            return nil
+        }
+    }
+    
+    // MARK: Save all todo
+    private func saveTodo(_ todos: [TodoModel]) {
+        guard let fileURL = fileURL else { return }
+        
+        do {
+            let data = try JSONEncoder().encode(todos)
+            try data.write(to: fileURL, options: .atomic)
+            print("Users saved at: \(fileURL)")
+        } catch {
+            print("Error saving todos: \(error)")
+        }
+    }
+    
+    // MARK: Load all todo
+    func loadTodos() -> [TodoModel] {
+        guard let fileURL = fileURL else { return [] }
+        
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let todos = try JSONDecoder().decode([TodoModel].self, from: data)
+            return todos
+        } catch {
+            print("No todo found, returning empty list")
+            return []
+        }
+    }
+    
+    // MARK: Load SpecificUser todo
+    func loadSpecificTodos(userId: Int) -> [TodoModel] {
+        let todos = loadTodos()
+            .filter({ $0.todoAssignedUserId == userId })
+        return todos
+    }
+    
+    // MARK: Add new todo
+    func addTodo(_ todo: TodoModel) {
+        var todos = loadTodos()
+        todos.append(todo)
+        saveTodo(todos)
+    }
+    
+    // MARK: Update Todo by ID
+    func updateTodo(_ updatedTodo: TodoModel) {
+        var todos = loadTodos()
+        if let index = todos.firstIndex(where: { $0.todoId == updatedTodo.todoId }) {
+            todos[index] = updatedTodo
+            saveTodo(todos)
+            print("Todo updated successfully")
+        } else {
+            print("Todo not found")
+        }
+    }
+    
+    // MARK: Delete Todo by ID
+    func deleteTodo(_ updatedTodo: TodoModel) {
+        var todos = loadTodos()
+        if let index = todos.firstIndex(where: { $0.todoId == updatedTodo.todoId }) {
+            todos.remove(at: index)
+            saveTodo(todos)
+            print("Todo updated successfully")
+        } else {
+            print("Todo not found")
+        }
+    }
+}
